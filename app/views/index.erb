@@ -1,20 +1,28 @@
 <div class="container">
 
-  <%# TODO: 
+  <%# TODO:
   1. If user is not signed in - display "Welcome".
   2. If user is signed in then  display all users %>
 
-  <h1>Welcome to the User Sign in!</h1>
+  <!-- Pop Up Window -->
+  <a href="#post">Create new greater brighter news!</a>
 
-  <% if logged_in? %>
+  <div id="post" class="modalDialog">
+    <div>
+      <a href="#close" title="Close" class="close">X</a>
+      <h2>Create Post</h2>
+      <form method="POST" action="/post">
+        <input type = "text" name = "post[title]" placeholder = "title">
+        <textarea rows="20" cols="50"type="text" name = "post[body]" placeholder="Your post here!" ></textarea>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
 
-  <p>
-  	<% @user.each do |user|%>
-  	<%= user.name %>
-  	<br>
-  	<% end %>
-  </p>
+  <% @post.each do |post| %>
+  <ul>
+    <li><%=@name.upcase %> <%= post.title %>: <%= post.body %></li>
+  </ul>
   <% end %>
-
 
 </div>

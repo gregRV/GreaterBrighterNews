@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   validates :email, :format => {:with =>/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/, :message => "Invalid Email" }
   validates :email, uniqueness: true
 
-  has_many :posts, :comments
+  has_many :posts
+  has_many :comments
 
   def password
   	@password ||= Password.new(password_hash)

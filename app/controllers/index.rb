@@ -2,6 +2,8 @@ get '/' do
 	@user = User.all
   # render home page
  #TODO: Show all users if user is signed in
+ @post = Post.all
+ @name = current_user.name
 
   erb :index
 end
@@ -9,7 +11,7 @@ end
 #----------- SESSIONS -----------
 
 get '/sessions/new' do
-  # render sign-in page 
+  # render sign-in page
   erb :sign_in
 end
 
@@ -46,3 +48,15 @@ post '/users' do
 	end
   # sign-up a new user
 end
+
+get "/" do
+end
+
+#-------Post--------
+post "/post" do
+  @post = Post.create(params[:post])
+  redirect '/'
+end
+
+
+
