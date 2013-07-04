@@ -7,7 +7,6 @@
 
 .container h1 {
   font-size: 17pt;
-
 }
 
 nav {
@@ -51,7 +50,6 @@ form label {
 }
 
 input {
-  margin-bottom: 10px;
 }
 
 .errors {
@@ -126,4 +124,37 @@ form.quirks {
   box-shadow: 1px 1px 3px #000;
 }
 
+.body {
+  display: inline-block;
+  width: 80%;
+  height: 95%;
+  overflow: hidden;
+}
+
 .close:hover { background: #00d9ff; }
+
+#tweet {
+  position: relative;
+  text-align: left;
+  display: inline-block;
+  margin: .2em .2em .2em .2em;
+  border: .1em solid black;
+  border-radius: 8px;
+  height: 80px;
+  width: 500px;
+  padding: .5em;
+  background-color: skyblue;
+}
+
+.voting {
+  display: inline-block;
+  padding-bottom: 10px;
+  float: right;
+  width: 15%;
+  margin-right: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}

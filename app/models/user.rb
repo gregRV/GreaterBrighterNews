@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :comments
+  has_many :postratings
+  has_many :commentratings
 
   def password
   	@password ||= Password.new(password_hash)

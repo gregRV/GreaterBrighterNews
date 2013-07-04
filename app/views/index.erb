@@ -6,7 +6,9 @@
 
   <!-- Pop Up Window -->
   <% if current_user %>
-  <a href="#post">Create new greater brighter news!</a>
+  <div class = "create">
+    <a href="#post">Create new greater brighter news!</a>
+  </div>
 
   <div id="post" class="modalDialog">
     <div>
@@ -22,11 +24,34 @@
   <% end %>
 
   <% @post.each do |post| %>
-  <ul>
-    <li><a href="/show_post/<%=post.id%>"><%= post.user.name %> <%= post.title %>: <%= post.body %></a></li>
-    <div id = "post"></div>
-    <div id = "comments"></div>
-  </ul>
+
+  <div id ="tweet">
+
+    <div class = "body">
+    <a href="/show_post/<%=post.id%>">
+      <%= post.user.name %> : <%= post.title %> -  <%= post.body %>
+    </a>
+    <br>
+    <%=post.postrating.rating%>
+
+    </div>
+
+    <div class = "voting">
+
+      <form action="/upvote/<%= post.id %>" method="post">
+        <input type="submit" value="upvote">
+      </form>
+
+      <form action = "/downvote/<%= post.id %>" method="post">
+        <input type="submit" value="downvote">
+      </form>
+
+      <div id = "post/rate/<%= post.id%>"></div>
+      <div id = "comments"></div>
+    </div>
+
+  </div>
+
   <% end %>
 
 </div>

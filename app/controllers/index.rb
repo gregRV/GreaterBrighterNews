@@ -59,6 +59,7 @@ end
 post "/post" do
   # option 1
   @post = current_user.posts.create(params[:post])
+  @postrating = Postrating.create(post_id: @post.id)
   # option 2
   # @post = Post.create(params[:post])
   # @post.user = current_user
@@ -68,19 +69,32 @@ post "/post" do
 end
 
 get "/show_post/:id" do |id|
-@post = Post.find(id)
-erb :show_post, {layout: false}
+  @post = Post.find(id)
+  erb :show_post, {layout: false}
 end
 
 #-------COMMENTS------
 
 post "/comment/:id" do |id|
   p params[:comment]
- @comment = current_user.comments.new(comment: params[:comment])
- @post = Post.find(id)
- @comment.post_id = @post.id
- @comment.save
+  @comment = current_user.comments.new(comment: params[:comment])
+  @post = Post.find(id)
+  @comment.post_id = @post.id
+  @comment.save
 
- redirect "/show_post/#{id}"
+  redirect "/show_post/#{id}"
 end
 
+#----RATING-----
+
+post "/upvote/:id" do |id|
+  @post = Post.find(id)
+  @post.postrating.increment!(:rating)
+  redirect "/"
+end
+
+post "/downvote/:id" do |id|
+  @post = Post.find(id)
+  @post.postrating.decrement!(:rating)
+  redirect "/"
+end
