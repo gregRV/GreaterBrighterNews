@@ -1,0 +1,14 @@
+<h1>Welcome <%= @user.name %>!</h1>
+
+<h2>Posts</h2>
+<% @user.posts.each do |post| %>
+  <li>Title: <%= post.title %></li>
+  <li>Body: <%= post.body %></li>
+<% end %>
+
+<h2>Comments</h2>
+<% @user.comments.each do |comment| %>
+  <li><%= comment.comment %></li>
+<% end %>
+
+

@@ -1,10 +1,6 @@
 get '/' do
-	@user = User.all
-  # render home page
- #TODO: Show all users if user is signed in
- @post = Post.all
- @name = current_user.name
-
+  @post = Post.all
+  @name = current_user.name if logged_in?
   erb :index
 end
 
@@ -49,14 +45,42 @@ post '/users' do
   # sign-up a new user
 end
 
-get "/" do
+
+get "/users/:id/profile" do |id|
+  @user = User.find(id)
+  # p @user.posts
+  # p user.post
+  # @posts = Post.find_by_user_id(id)
+  # p @posts
+  erb :user_profile
 end
 
 #-------Post--------
 post "/post" do
-  @post = Post.create(params[:post])
+  # option 1
+  @post = current_user.posts.create(params[:post])
+  # option 2
+  # @post = Post.create(params[:post])
+  # @post.user = current_user
+  # @post.save
+  # option 3 (see view)
   redirect '/'
 end
 
+get "/show_post/:id" do |id|
+@post = Post.find(id)
+erb :show_post, {layout: false}
+end
 
+#-------COMMENTS------
+
+post "/comment/:id" do |id|
+  p params[:comment]
+ @comment = current_user.comments.new(comment: params[:comment])
+ @post = Post.find(id)
+ @comment.post_id = @post.id
+ @comment.save
+
+ redirect "/show_post/#{id}"
+end
 

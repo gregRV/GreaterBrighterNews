@@ -5,6 +5,7 @@
   2. If user is signed in then  display all users %>
 
   <!-- Pop Up Window -->
+  <% if current_user %>
   <a href="#post">Create new greater brighter news!</a>
 
   <div id="post" class="modalDialog">
@@ -18,10 +19,13 @@
       </form>
     </div>
   </div>
+  <% end %>
 
   <% @post.each do |post| %>
   <ul>
-    <li><%=@name.upcase %> <%= post.title %>: <%= post.body %></li>
+    <li><a href="/show_post/<%=post.id%>"><%= post.user.name %> <%= post.title %>: <%= post.body %></a></li>
+    <div id = "post"></div>
+    <div id = "comments"></div>
   </ul>
   <% end %>
 
