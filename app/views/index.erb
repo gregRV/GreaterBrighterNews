@@ -28,12 +28,14 @@
   <div id ="tweet">
 
     <div class = "body">
-    <a href="/show_post/<%=post.id%>">
-      <%= post.user.name %> : <%= post.title %> -  <%= post.body %>
-    </a>
-    <br>
-    <%=post.postrating.rating%>
-
+      <a href="/show_post/<%=post.id%>">
+        <%= post.user.name %>
+        <br>
+        <%= post.title %> -  <%= post.body %>
+      </a>
+      <br>
+      <div id="rating">Rating: <%=post.postrating.rating%>
+      </div>
     </div>
 
     <div class = "voting">
@@ -49,7 +51,6 @@
       <div id = "post/rate/<%= post.id%>"></div>
       <div id = "comments"></div>
     </div>
-
   </div>
 
   <% end %>
